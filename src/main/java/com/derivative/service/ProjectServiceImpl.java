@@ -15,18 +15,18 @@ import org.springframework.stereotype.Service;
 
 import com.derivative.dto.PayOffCoordinates;
 import com.derivative.dto.TradeEntityDto;
+import com.derivative.entity.FutureId;
+import com.derivative.entity.Futures;
 import com.derivative.entity.FuturesEntity;
+import com.derivative.entity.OptionId;
+import com.derivative.entity.Options;
 import com.derivative.entity.OptionsEntity;
 import com.derivative.entity.TradeEntity;
+import com.derivative.entity.User;
 import com.derivative.repo.FuturesRepository;
 import com.derivative.repo.OptionsRepository;
 import com.derivative.repo.TradeRepo;
 import com.derivative.repo.UserRepository;
-import com.derivative.pojo.OptionId;
-import com.derivative.pojo.Options;
-import com.derivative.pojo.User;
-import com.derivative.pojo.FutureId;
-import com.derivative.pojo.Futures;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -66,9 +66,9 @@ public class ProjectServiceImpl implements ProjectService {
 		double futuresPriceTemp = futuresEntity.getFuturesPrice();
 		
 		if(category.equals("Long")) {
-			return lotQuantityTemp*lotSizeTemp*(futuresPriceTemp-spotPriceTemp);
+			return lotQuantityTemp*lotSizeTemp*(spotPriceTemp-futuresPriceTemp);
 		}else if(category.equals("Short")){
-			return (lotQuantityTemp*lotSizeTemp*(spotPriceTemp-futuresPriceTemp));
+			return (lotQuantityTemp*lotSizeTemp*(futuresPriceTemp-spotPriceTemp));
 		}else {
 			return 0;
 		}

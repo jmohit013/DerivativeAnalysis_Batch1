@@ -8,7 +8,7 @@ import com.derivative.dto.TradeEntityDto;
 import com.derivative.entity.FuturesEntity;
 import com.derivative.entity.OptionsEntity;
 import com.derivative.entity.TradeEntity;
-import com.derivative.pojo.User;
+import com.derivative.entity.User;
 
 public interface ProjectService {
 	public double futuresProfitorLoss(FuturesEntity futuresTrades,double spotPrice);

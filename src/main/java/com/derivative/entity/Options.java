@@ -1,4 +1,4 @@
-package com.derivative.pojo;
+package com.derivative.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

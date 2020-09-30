@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.derivative.dto.PayOffCoordinates;
 import com.derivative.dto.TradeEntityDto;
 import com.derivative.entity.TradeEntity;
-import com.derivative.pojo.User;
+import com.derivative.entity.User;
 import com.derivative.service.ProjectService;
 
 @RestController
