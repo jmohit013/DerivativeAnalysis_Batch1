@@ -35,7 +35,7 @@ public class FuturesEntity implements Serializable {
 	
 	private double futuresMargin;
 	
-	@JsonBackReference
+	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="tradeId")
 	private TradeEntity tradeEntity;

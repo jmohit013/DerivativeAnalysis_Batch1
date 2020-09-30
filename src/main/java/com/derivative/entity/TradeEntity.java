@@ -29,11 +29,11 @@ public class TradeEntity {
 	
 	private double tradePremium;
 	
-	@JsonManagedReference
+	
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy = "tradeEntity")
 	private Set<FuturesEntity> futuresTrade;
 	
-	@JsonManagedReference
+	
 	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.LAZY, mappedBy = "tradeEntity")
 	private Set<OptionsEntity> optionsTrade;
 	

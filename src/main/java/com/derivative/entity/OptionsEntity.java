@@ -39,7 +39,7 @@ public class OptionsEntity implements Serializable {
 	
 	private double optionsMargin; //calculate
 	
-	@JsonBackReference
+	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="tradeId")
 	private TradeEntity tradeEntity;

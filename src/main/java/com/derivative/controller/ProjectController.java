@@ -35,12 +35,6 @@ public class ProjectController {
 		return projectservice.login(user);
 	}
 	
-	
-	@PostMapping(value="/example",consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-	public TradeEntity createNewTrade(@RequestBody TradeEntity tradeEntity) {
-		return projectservice.createTrade(tradeEntity);
-	}
-	
 	@PostMapping(value="/payoff",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public TradeEntityDto payOffChart(@RequestBody TradeEntity tradeEntity){
 		return projectservice.levelOne(tradeEntity); 

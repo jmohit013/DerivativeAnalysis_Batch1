@@ -47,7 +47,6 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public boolean login(User user) {
 		// TODO Auto-generated method stub
-		System.out.println(user.toString());
 		return (user.getPassword().equals(userrepo.findByName(user.getName()).get().getPassword()));
 	}
 	
@@ -392,40 +391,27 @@ public class ProjectServiceImpl implements ProjectService {
 		List<Double> endingSortedDesc = new ArrayList<Double>(endingSortedAsc);
 		Collections.reverse(endingSortedDesc);
 		
-//		System.out.println(initial);
-//		System.out.println(initialSet);
-//		System.out.println(initialSortedAsc);
-//		System.out.println(initialSortedDesc);
-		
-//		System.out.println(ending);
-//		//System.out.println(endingSet);
-//		System.out.println(endingSortedAsc);
-//		System.out.println(endingSortedDesc);
-		
+
  		String bullish = null;
 		String bearish = null;
 		
 		// Denoting bearish and bullish string by checking at early points and end points //
 		
 		if (initialSet.size() == 1 && endingSet.size() != 1) {
-			System.out.println("a");
+			
 			bearish = "constant";
 			if (ending.equals(endingSortedAsc)) {
-				System.out.println("b");
 				bullish = "Unlimited Profit";
 			}
 			if (ending.equals(endingSortedDesc)) {
-				System.out.println("c");
 				bullish = "Unlimited Loss";
 			}
 		} else if (initialSet.size() != 1 && endingSet.size() == 1) {
 			bullish = "constant";
 			if (initial.equals(initialSortedAsc)) {
-				System.out.println("d");
 				bearish = "Unlimited Loss";
 			}
 			if (initial.equals(initialSortedDesc)) {
-				System.out.println("e");
 				bearish = "Unlimited Profit";
 			}
 		} else {
