@@ -280,11 +280,27 @@ public class ProjectServiceImpl implements ProjectService {
 		TradeEntity tradeEntityTemp = tradeEntity;
 		
 		List<PayOffCoordinates> p = new ArrayList<PayOffCoordinates>();
+		
+		double spotPriceTemp = 0;
+		
 		Set<FuturesEntity> futuresEntitiestemp = tradeEntityTemp.getFuturesTrade();
 		Set<OptionsEntity> optionsEntitiestemp = tradeEntityTemp.getOptionsTrade();
 		
-		List<FuturesEntity> l = new ArrayList<FuturesEntity>();
-		l.addAll(futuresEntitiestemp);
+		if(!futuresEntitiestemp.isEmpty()) {
+			List<FuturesEntity> l = new ArrayList<FuturesEntity>();
+			l.addAll(futuresEntitiestemp);
+			FutureId ft = new FutureId(l.get(0).getCompanyName(), l.get(0).getUnderlyingAsset(), l.get(0).getFuturesCat());
+			Optional<Futures> fut = futuresrepo.findById(ft);
+			spotPriceTemp = fut.get().getSpotPrice();
+		} else {
+			List<OptionsEntity> l = new ArrayList<OptionsEntity>(optionsEntitiestemp);
+			OptionId op = new OptionId(l.get(0).getCompanyName(),l.get(0).getOptionsCat(),
+					l.get(0).getOptionsType(),l.get(0).getUnderlyingAsset());
+			Optional<Options> opt = optionsrepo.findById(op);
+			spotPriceTemp = opt.get().getSpotPrice();
+		}
+		
+		
 		
 		for (FuturesEntity f : futuresEntitiestemp) {
 			f.setTradeEntity(tradeEntityTemp);
@@ -297,9 +313,7 @@ public class ProjectServiceImpl implements ProjectService {
 		TradeEntity tradeEntityfinal = tradeRepo.save(tradeEntityTemp);
 		// setting of tradeId in futuresTrade and OptionsTrade done // 
 		
-		FutureId ft = new FutureId(l.get(0).getCompanyName(), l.get(0).getUnderlyingAsset(), l.get(0).getFuturesCat());
-		Optional<Futures> fut = futuresrepo.findById(ft);
-		double spotPriceTemp = fut.get().getSpotPrice();
+		
 		
 		for (double j = 0.8*spotPriceTemp;j<=1.2*spotPriceTemp;j+=0.0001*spotPriceTemp) {
 			p.add(tradeNetProfit(tradeEntityfinal, j));
