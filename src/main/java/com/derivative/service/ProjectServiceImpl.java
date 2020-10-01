@@ -356,13 +356,14 @@ public class ProjectServiceImpl implements ProjectService {
 		
 		
 		for (int i=1;i<profitTemp.size();i++) {
-			if ((profitTemp.get(i)<0 && profitTemp.get(i-1)>0)||(profitTemp.get(i)>0 && profitTemp.get(i-1)<0)) {
+			if ((profitTemp.get(i)<0 && profitTemp.get(i-1)>=0)||(profitTemp.get(i)>0 && profitTemp.get(i-1)<=0)) {
 				breakEven.add(i);
 			}
 		}
 		
 		for(int i :breakEven) {
-			spotPriceBreakEven.add(l.get(i).getSpotPrice());
+			double temp = Math.round(l.get(i).getSpotPrice());
+			spotPriceBreakEven.add(temp);
 		}
 		t.setBreakEvenPoints(spotPriceBreakEven);
 		
